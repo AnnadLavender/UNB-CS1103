@@ -1,0 +1,126 @@
+Script started on Thu 14 Jan 2021 07:51:37 PM AST
+]0;anguyen5@id414m30:~[anguyen5@id414m30 ~]$ my[Ký[Kysql -h cs1103.cs.unb.ca -u anguyen5 -p
+Enter password: 
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 12908
+Server version: 5.5.65-MariaDB MariaDB Server
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> use Ch01_Texx[Kt;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [Ch01_Text]> show tables;
++---------------------+
+| Tables_in_Ch01_Text |
++---------------------+
+| AGENT               |
+| CERTIFIED           |
+| CUSTOMER            |
+| EMPLOYEE            |
+| EMPLOYEESKILLS      |
+| SKILL               |
++---------------------+
+(B[0;1m6 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch01_Text]> show collu[K[Kumns from AGENT;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| A_NAME    | varchar(15)   | YES  |     | NULL    |       |
+| A_PHONE   | varchar(12)   | YES  |     | NULL    |       |
+| A_ADDRESS | varchar(20)   | YES  |     | NULL    |       |
+| ZIP       | varchar(5)    | YES  |     | NULL    |       |
+| HIRED     | datetime      | YES  |     | NULL    |       |
+| YTD_PAY   | decimal(10,2) | YES  |     | NULL    |       |
+| YTD_FIT   | decimal(10,2) | YES  |     | NULL    |       |
+| YTD_FICA  | decimal(10,2) | YES  |     | NULL    |       |
+| YTD_SLS   | decimal(10,2) | YES  |     | NULL    |       |
+| DEP       | int(11)       | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+(B[0;1m10 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch01_Text]> SELECT * FROM EMP[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kselect * from EMPLOYEE;
++-------------+----------------+----------------+---------------------+---------------------+
+| EMPLOYEE_ID | EMPLOYEE_FNAME | EMPLOYEE_LNAME | EMPLOYEE_HIREDATE   | EMPLOYEE_TITLE      |
++-------------+----------------+----------------+---------------------+---------------------+
+| 02345       | Johnny         | Jones          | 1997-02-14 00:00:00 | DBA                 |
+| 03373       | Franklin       | Johnson        | 2004-03-15 00:00:00 | Purchasing Agent    |
+| 04893       | Patricia       | Richards       | 2006-06-11 00:00:00 | DBA                 |
+| 06234       | Jasmine        | Patel          | 2007-08-10 00:00:00 | Programmer          |
+| 08273       | Marco          | Bienz          | 2008-07-28 00:00:00 | Analyst             |
+| 09002       | Ben            | Joiner         | 2012-05-20 00:00:00 | Clerk               |
+| 09283       | Juan           | Chavez         | 2012-07-04 00:00:00 | Clerk               |
+| 09382       | Jessica        | Johnson        | 2012-08-02 00:00:00 | Database Programmer |
+| 10282       | Amanda         | Richardson     | 2013-04-11 00:00:00 | Clerk               |
+| 13383       | Raymond        | Matthews       | 2014-03-12 00:00:00 | Programmer          |
+| 13567       | Robert         | Almond         | 2014-09-30 00:00:00 | Analyst             |
+| 13932       | Megan          | Lee            | 2015-09-29 00:00:00 | Programmer          |
+| 14311       | Lee            | Duong          | 2014-09-01 00:00:00 | Programmer          |
++-------------+----------------+----------------+---------------------+---------------------+
+(B[0;1m13 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch01_Text]> SELEC[K[K[K[K[Kselect EMPLOYEE_ID,[K, EMPLOYEE_TITLE FR[K[Kfrom EMPLOYEE;
++-------------+---------------------+
+| EMPLOYEE_ID | EMPLOYEE_TITLE      |
++-------------+---------------------+
+| 02345       | DBA                 |
+| 03373       | Purchasing Agent    |
+| 04893       | DBA                 |
+| 06234       | Programmer          |
+| 08273       | Analyst             |
+| 09002       | Clerk               |
+| 09283       | Clerk               |
+| 09382       | Database Programmer |
+| 10282       | Clerk               |
+| 13383       | Programmer          |
+| 13567       | Analyst             |
+| 13932       | Programmer          |
+| 14311       | Programmer          |
++-------------+---------------------+
+(B[0;1m13 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch01_Text]> SE[K[Kselect * from CUSS[KTOMER;
++-----------------+--------------+------------------------+-------+--------------+--------------+------+--------+---------------------+
+| C_NAME          | C_PHONE      | C_ADDRESS              | C_ZIP | A_NAME       | A_PHONE      | TP   | AMT    | REN                 |
++-----------------+--------------+------------------------+-------+--------------+--------------+------+--------+---------------------+
+| Alfred A. Ramas | 615-844-2573 | 218 Fork Rd., Babs, TN | 36123 | Leah F. Hahn | 615-882-1244 | T1   | 100.00 | 2018-04-05 00:00:00 |
+| Leona K. Dunne  | 713-894-1238 | Box 12A, Fox, KY       | 25246 | Alex B. Alby | 713-228-1249 | T1   | 250.00 | 2018-06-16 00:00:00 |
+| Kathy W. Smith  | 615-894-2285 | 125 Oak Ln, Babs, TN   | 36123 | Leah F. Hahn | 615-882-2144 | S2   | 150.00 | 2019-01-29 00:00:00 |
+| Paul F. Olowski | 615-894-2180 | 217 Lee Ln., Babs, TN  | 36123 | Leah F. Hahn | 615-882-1244 | S1   | 300.00 | 2018-10-14 00:00:00 |
+| Myron Orlando   | 615-222-1672 | Box 111, New, TN       | 36155 | Alex B. Alby | 713-228-1249 | T1   | 100.00 | 2018-12-28 00:00:00 |
+| Amy B. O'Brian  | 713-442-3381 | 387 Troll Dr., Fox, KY | 25246 | John T. Okon | 615-123-5589 | T2   | 850.00 | 2018-09-22 00:00:00 |
+| James G. Brown  | 615-297-1228 | 21 Tye Rd., Nash, TN   | 37118 | Leah F. Hahn | 615-882-1244 | S1   | 120.00 | 2019-03-25 00:00:00 |
+| George Williams | 615-290-2556 | 155 Maple, Nash, TN    | 37119 | John T. Okon | 615-123-5589 | S1   | 250.00 | 2018-07-17 00:00:00 |
+| Anne G. Farriss | 713-382-7185 | 2119 Elm, Crew, KY     | 25432 | Alex B. Alby | 713-228-1249 | T2   | 100.00 | 2018-12-03 00:00:00 |
+| Olette K. Smith | 615-297-3809 | 2782 Main, Nash, TN    | 37118 | John T. Okon | 615-123-5589 | S2   | 500.00 | 2019-03-14 00:00:00 |
++-----------------+--------------+------------------------+-------+--------------+--------------+------+--------+---------------------+
+(B[0;1m10 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch01_Text]> select C_NAME, C_PHONE, C_ADDRESS from CUSS[KTOMER;
++-----------------+--------------+------------------------+
+| C_NAME          | C_PHONE      | C_ADDRESS              |
++-----------------+--------------+------------------------+
+| Alfred A. Ramas | 615-844-2573 | 218 Fork Rd., Babs, TN |
+| Leona K. Dunne  | 713-894-1238 | Box 12A, Fox, KY       |
+| Kathy W. Smith  | 615-894-2285 | 125 Oak Ln, Babs, TN   |
+| Paul F. Olowski | 615-894-2180 | 217 Lee Ln., Babs, TN  |
+| Myron Orlando   | 615-222-1672 | Box 111, New, TN       |
+| Amy B. O'Brian  | 713-442-3381 | 387 Troll Dr., Fox, KY |
+| James G. Brown  | 615-297-1228 | 21 Tye Rd., Nash, TN   |
+| George Williams | 615-290-2556 | 155 Maple, Nash, TN    |
+| Anne G. Farriss | 713-382-7185 | 2119 Elm, Crew, KY     |
+| Olette K. Smith | 615-297-3809 | 2782 Main, Nash, TN    |
++-----------------+--------------+------------------------+
+(B[0;1m10 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch01_Text]> EX[K[Kexit;
+(B[0;1mBye
+(B[m]0;anguyen5@id414m30:~[anguyen5@id414m30 ~]$ exxit[K[K[K[Kxit
+exit
+
+Script done on Thu 14 Jan 2021 08:14:30 PM AST

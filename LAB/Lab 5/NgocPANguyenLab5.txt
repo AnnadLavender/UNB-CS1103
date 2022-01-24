@@ -1,0 +1,48 @@
+-- Cleanup Exercise
+use Ch07_SaleCo;
+	-- Query 1
+    select INV_NUMBER, INV_DATE from CUSTOMER natural join INVOICE where CUS_LNAME="Farriss" and CUS_FNAME ="Anne";
+    -- QUery 2
+    select P_CODE, P_DESCRIPT from VENDOR natural join PRODUCT where V_STATE = "FL";
+    
+    -- Query 3 
+    select*from CUSTOMER natural join INVOICE where CUS_LNAME = "Farriss";
+    
+-- Exercise Queries
+USE Ch07_LargeCo;
+	-- Query 1
+	select*from LGBRAND order by BRAND_TYPE;
+
+	-- Query 2 
+    select count(BRAND_NAME) as NUMBER_OF_BRAND, BRAND_TYPE from LGBRAND group by BRAND_TYPE;
+	
+    -- Have a look at LGCUSTOMER table
+    select * from LGCUSTOMER;
+
+    -- Query 3
+    select CUST_STATE, count(CUST_CODE) as NUMBER_OF_CUSTOMER from LGCUSTOMER where CUST_BALANCE>0 group by CUST_STATE;
+
+	-- Query 4
+    select CUST_STATE, count(CUST_CODE) as NUMBER_OF_CUSTOMER from LGCUSTOMER where CUST_BALANCE>0 group by CUST_STATE having count(CUST_CODE)>100;
+
+	-- Query 5 
+    select CUST_STATE, count(CUST_CODE) as NUMBER_OF_CUSTOMER from LGCUSTOMER where CUST_BALANCE>0 group by CUST_STATE having count(CUST_CODE)>100 order by CUST_STATE desc;
+
+	-- Query 6
+    select CUST_STATE, count(CUST_CODE) as NUMBER_OF_CUSTOMER from LGCUSTOMER where CUST_BALANCE>0 group by CUST_STATE having count(CUST_CODE)>100 order by NUMBER_OF_CUSTOMER asc;
+    
+        -- Have a look at LGCUSTOMER table
+    select BRAND_TYPE from LGBRAND where BRAND_ID = "2882";
+    select*from LGBRAND;
+    
+    -- Query 7
+    select LB.BRAND_TYPE, sum(LP.PROD_QOH) from LGBRAND as LB, LGPRODUCT  as LP, LGCUSTOMER as LC
+	Where LB.BRAND_ID = LP.Brand_ID and LC.CUST_STATE = "ME" group by LB.BRAND_TYPE;
+  
+    -- Query 8
+    
+    
+    -- Query 9
+    select max(EMP_HIREDATE), EMP_FNAME, EMP_LNAME
+from LGEMPLOYEE;
+    

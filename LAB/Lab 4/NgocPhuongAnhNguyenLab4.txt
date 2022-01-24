@@ -1,0 +1,57 @@
+Script started on Thu 04 Feb 2021 10:00:02 PM AST
+]0;anguyen5@id414m30:~[anguyen5@id414m30 ~]$ mysql -h cs1103.cs.unb.ca -u anguyen5 -p
+Enter password: 
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 14903
+Server version: 5.5.65-MariaDB MariaDB Server
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> use[K[K[K use Ch07_SaleCo;[1P
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [Ch07_SaleCo]> select CUS_LNAME, CUS_FNAME from CUSTOMER where CUS_A REACODE = 615 and CUS_BALANCE != 0;
++-----------+-----------+
+| CUS_LNAME | CUS_FNAME |
++-----------+-----------+
+| Smith     | Kathy     |
+| Olowski   | Paul      |
+| Brown     | James     |
+| Williams  | George    |
++-----------+-----------+
+(B[0;1m4 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch07_SaleCo]> select P_DESCRIPT as DESCRIPTION, P_PRICE as UNIT_PRI CE from PRODUCT where P_QOH < 15;
++----------------------------------+------------+
+| DESCRIPTION                      | UNIT_PRICE |
++----------------------------------+------------+
+| Power painter, 15 psi., 3-nozzle |     109.99 |
+| B&D jigsaw, 12-in. blade         |     109.92 |
+| B&D jigsaw, 8-in. blade          |      99.87 |
+| B&D cordless drill, 1/2-in.      |      38.95 |
+| Sledge hammer, 12 lb.            |      14.40 |
+| Hicut chain saw, 16 in.          |     256.99 |
++----------------------------------+------------+
+(B[0;1m6 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch07_SaleCo]> select P_DESCRIPT as DESCRIPTION, (P_PRICE * (1 - P_D ISCOUNT)) as DISCOUNTED_PRICE from PRODUCT where P_PRICE > 100;
++-------------------------------------+------------------+
+| DESCRIPTION                         | DISCOUNTED_PRICE |
++-------------------------------------+------------------+
+| Power painter, 15 psi., 3-nozzle    |         109.9900 |
+| B&D jigsaw, 12-in. blade            |         104.4240 |
+| Hicut chain saw, 16 in.             |         244.1405 |
+| Steel matting, 4'x8'x1/6", .5" mesh |         107.9550 |
++-------------------------------------+------------------+
+(B[0;1m4 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [Ch07_SaleCo]> exit
+(B[0;1mBye
+(B[m]0;anguyen5@id414m30:~[anguyen5@id414m30 ~]$ exit
+exit
+
+Script done on Thu 04 Feb 2021 10:03:38 PM AST

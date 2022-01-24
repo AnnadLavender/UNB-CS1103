@@ -1,0 +1,77 @@
+Script started on Fri 19 Mar 2021 03:56:22 PM ADT
+]0;anguyen5@id414m30:~[anguyen5@id414m30 ~]$ mysql -h cs1103.cs.unb.ca -u anguyen5 -p
+Enter password: 
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 3885
+Server version: 5.5.65-MariaDB MariaDB Server
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> use anguyen5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [anguyen5]> ALTER TABLE Students ADD scholarship INT;
+Stage: 2 of 2 'Enabling keys'      0% of stage done                                                   (B[0;1mQuery OK, 3 rows affected (0.02 sec)
+(B[m(B[0;1mRecords: 3  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [anguyen5]> DELIMITER $$
+MariaDB [anguyen5]>   CREATE PROCEDURE AcceptStudent
+    ->   (
+    ->     name VARCHAR(50),
+    ->     email VARCHAR(50),
+    ->     average FLOAT
+    ->   )
+    ->   BEGIN
+    ->     DECLARE scholarship INT;
+    ->     IF average<=100 AND average>90 THEN
+    ->       SET scholarship = 1500;
+av    ->     ELSEIF average <=90 AND average >85 THEN
+    ->       SET scholarship = 1000;
+averag    ->     ELSEIF average < 85 AND average>=0 THEN
+    ->       SET scholarship = 0;
+    ->       ELSE
+ SIG    ->         SIGNAL SQLSTATE '45000'
+    ->         SET MESSAGE_TEXT = 'The mark is out of range';
+    ->     END IF;
+    ->     INSERT INTO Students(stName, email, scholarship)
+VALU    ->     VALUE(name, email, scholarship);
+    ->   END$$
+ELIMIT(B[0;1mQuery OK, 0 rows affected (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [anguyen5]> 
+MariaDB [anguyen5]> DELIMITER ;
+MariaDB [anguyen5]> CALL AcceptStudent('Kevin Smith','kevinsmith@gmail.com', 95);
+(B[0;1mQuery OK, 1 row affected (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [anguyen5]> CALL AcceptStudent('Eddy Jones','eddyjones@gmail.com',80 );
+AcceptS(B[0;1mQuery OK, 1 row affected (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [anguyen5]> CALL AcceptStudent('Eric Thomas','ericthomas@gmail.com', 91);
+ALL AcceptStudent('Envy Wal(B[0;1mQuery OK, 1 row affected (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [anguyen5]> CALL AcceptStudent('Envy Walker','envywalker@gmail.com', 101);
+ERROR 1644 (45000): The mark is out of range
+(B[0;7m(B[mMariaDB [anguyen5]> CALL AcceptStudent('Envy Walker','envywalker@gmail.com',1101);[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cs[KSELECT * FROM Students;
++-----------+----------------+----------------------+------+-------------+
+| studentId | stName         | email                | gpa  | scholarship |
++-----------+----------------+----------------------+------+-------------+
+|   3325572 | Amy Olson      | amyolson@gmail.com   |  3.2 |        NULL |
+|   5532011 | John Doe       | johndoe@gmail.com    |  2.1 |        NULL |
+|   5533222 | Kristyn Webber | krisweb@gmail.com    |  3.1 |        NULL |
+|   5533247 | Kevin Smith    | kevinsmith@gmail.com |    0 |        1500 |
+|   5533248 | Eddy Jones     | eddyjones@gmail.com  |    0 |           0 |
+|   5533249 | Eric Thomas    | ericthomas@gmail.com |    0 |        1500 |
++-----------+----------------+----------------------+------+-------------+
+(B[0;1m6 rows in set (0.00 sec)
+(B[m(B[0;1m
+(B[mMariaDB [anguyen5]> exit;
+(B[0;1mBye
+(B[m]0;anguyen5@id414m30:~[anguyen5@id414m30 ~]$ exit;
+exit
+
+Script done on Fri 19 Mar 2021 04:08:59 PM ADT
